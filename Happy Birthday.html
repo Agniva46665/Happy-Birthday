@@ -5,20 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-<link rel="stylesheet" href="Happy%20Birthday_files/bootstrap.css"><link rel="stylesheet" href="Happy%20Birthday_files/style.css"></head>
+<link rel="stylesheet" href="Happy%20Birthday_files/bootstrap.css"><link rel="stylesheet" href="Happy%20Birthday_files/style.css">
 
-<body data-gr-c-s-loaded="true">
-    <div>
-        <div class="container">
-            <div>
-                <div class="row">
-                    <div class="loader" style="display: none;">
-                        <button id="play">Start</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- NEW INLINE CSS -->
+    <style>
+        .start-screen {
+            background-color: #ff6a00; /* Lava orange */
+            height: 100vh;
+            width: 100%;
+        }
+
+        .start-title {
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            font-size: 1.5rem;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            background-color: white;
+            color: #ff6a00;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .start-btn:hover {
+            background-color: #ffe0cc;
+        }
+    </style>
+</head>
     <audio class="song" controls="controls" loop="">
         <source src="Happy%20Birthday_files/music.mp3">
         
