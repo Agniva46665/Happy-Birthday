@@ -58,6 +58,24 @@
     display: none;
 }
 
+.cake-btn {
+    background: linear-gradient(135deg, #00c6a7, #1dd3b0); /* green-blue */
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cake-btn:hover {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+    transform: scale(1.05);
+}
+
+
+
 body {
     background-color: #F76806;
 }
