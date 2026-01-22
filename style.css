@@ -1,6 +1,7 @@
 /* customizable snowflake styling */
 .loader button {
     width: 97%;
+    line-height: 60px;
     height: 100px;
     position: fixed;
     left: 50%;
