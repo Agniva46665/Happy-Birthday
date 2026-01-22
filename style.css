@@ -61,13 +61,16 @@
 
 .cake-btn {
     background: linear-gradient(135deg, #00c6a7, #1dd3b0); /* green-blue */
-    color: white;
+    color: black;
     font-size: 1.2rem;
     padding: 12px 32px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: 0.3s ease;
+    display: inline-block !important;
+    position: relative;
+    z-index: 9999;
 }
 
 .cake-btn:hover {
