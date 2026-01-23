@@ -1,28 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World Page</title>
-    <style>
-        /* Center text on the page */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* light background */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Poem</title>
+  <style>
+    /* Full-page styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      background: #fff0f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-        h1 {
-            color: #ff5f7e;
-            font-size: 48px;
-        }
-    </style>
+    /* Pink birthday card */
+    .card {
+      position: relative;
+      width: 400px;
+      min-height: 400px;
+      background: #ffb6c1;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      padding: 30px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .card h1 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .card textarea {
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+    }
+
+    /* Confetti canvas covers entire screen */
+    #confetti-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Birthday Card -->
+  <div class="card">
+    <h1>Happy Birthday!</h1>
+    <textarea placeholder="Write your poem here (up to 150 words)"></textarea>
+  </div>
+
+  <script>
+    // Confetti animation
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    const confettiCount = 150;
+    const confetti = [];
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    class Confetto {
+      constructor() {
+        this.x = random(0, W);
+        this.y = random(-H, 0);
+        this.size = random(5, 12);
+        this.speed = random(2, 5);
+        this.angle = random(0, 2 * Math.PI);
+        this.color = `hsl(${random(0, 360)}, 100%, 50%)`;
+        this.tilt = random(-10, 10);
+        this.tiltSpeed = random(0.05, 0.12);
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x + this.tilt, this.y);
+        ctx.lineTo(this.x + this.tilt + this.size, this.y + this.size);
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = this.size / 4;
+        ctx.stroke();
+      }
+
+      update() {
+        this.y += this.speed;
+        this.angle += this.tiltSpeed;
+        this.tilt = Math.sin(this.angle) * 15;
+
+        if (this.y > H) {
+          this.y = random(-20, 0);
+          this.x = random(0, W);
+        }
+      }
+    }
+
+    for (let i = 0; i < confettiCount; i++) {
+      confetti.push(new Confetto());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      for (let i = 0; i < confetti.length; i++) {
+        confetti[i].update();
+        confetti[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Adjust canvas on window resize
+    window.addEventListener('resize', () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    });
+  </script>
 </body>
 </html>
