@@ -63,5 +63,17 @@
 <script src="js/jquery.js"></script>
 <script src="js/typed.min.js"></script>
 <script src="js/script.js"></script>
+<script>
+document.getElementById("cutCakeBtn").addEventListener("click", () => {
+    const btn = document.getElementById("cutCakeBtn");
+    btn.disabled = true;      // optional: prevent multiple clicks
+    btn.textContent = "Going…"; // optional: feedback
+
+    setTimeout(() => {
+        window.location.href = "poem.html"; // <-- change this to your page
+    }, 200); // 0.2 second delay
+});
+</script>
+
 
 </html>
